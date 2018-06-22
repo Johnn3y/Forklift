@@ -12,8 +12,8 @@ Gtube-dl is a simple GUI for youtube-dl using PyGObject
 ## Run
 ```
 git clone https://fkdlsfdslk
-cd gtubedl
-python src/gtubedl.py
+cd Gtube-dl
+python gtubedl/gtubedl.py
 ```
 ## ToDo
 

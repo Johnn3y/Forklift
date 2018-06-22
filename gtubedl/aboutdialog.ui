@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkAboutDialog" id="aboutdialog">
+    <property name="can_focus">False</property>
+    <property name="type_hint">dialog</property>
+    <property name="program_name">Gtube-dl</property>
+    <property name="version">0.9.0</property>
+    <property name="copyright" translatable="yes">Copyright © 2018 johnn3y</property>
+    <property name="comments" translatable="yes">A Simple GUI for youtube-dl using PyGObject</property>
+    <property name="website">https://github.com/Johnn3y/Gtube-dl/</property>
+    <property name="website_label" translatable="yes">Github</property>
+    <property name="logo_icon_name">youtube-dl</property>
+    <property name="license_type">gpl-3-0</property>
+    <signal name="response" handler="on_about_response" swapped="no"/>
+    <child>
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
