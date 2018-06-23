@@ -21,7 +21,7 @@ from gi.repository import Notify
 import threading
 
 import youtube_dl
-import cd
+from .cd import cd
 import urllib.request
 import time
 NONE="NONE"
@@ -35,7 +35,7 @@ class Download(threading.Thread):
 		self.url=url
 		self.ydl_opts=ydl_opts
 		self.path=path
-		
+
 	def my_hook(self,d):
 		status=['finished','error','downloading']
 		for stat in status:
@@ -45,7 +45,7 @@ class Download(threading.Thread):
 			Notify.init("Gtube-dl")
 			notification=Notify.Notification.new(self.model.get_value(self.iter,0),self.model.get_value(self.iter,1))
 			notification.show()
-		if d['status']=='downloading':		
+		if d['status']=='downloading':
 			for a,b in enumerate(['status','filename','tmpfilename','downloaded_bytes','total_bytes','total_bytes_estimate','elapsed','eta','speed','fragment_index','fragment_count']):
 				try:
 					self.model.set_value(self.iter,a,str(d[b]))
@@ -59,13 +59,13 @@ class Download(threading.Thread):
 
 	def run(self):
 		self.ydl_opts['progress_hooks']=[self.my_hook]
-		with cd.cd(self.path),youtube_dl.YoutubeDL(self.ydl_opts) as ydl:
+		with cd(self.path),youtube_dl.YoutubeDL(self.ydl_opts) as ydl:
 			try:
 				ydl.download([self.url])
 			except youtube_dl.utils.DownloadError as e:
 				Notify.init("Gtube-dl")
 				notification=Notify.Notification.new('Error',e)
-				
+
 
 class InfoExtraction(threading.Thread):
 
@@ -82,7 +82,7 @@ class InfoExtraction(threading.Thread):
 			try:
 				test=ydl.extract_info(self.url,False)
 
-		#nopliter=MainTS.get_tree().append(None)	
+		#nopliter=MainTS.get_tree().append(None)
 				if test.get('_type') is 'playlist':
 			#print(test)
 			#test['playlist_id']=test.get('id')
@@ -106,12 +106,12 @@ class InfoExtraction(threading.Thread):
 				self.errormodel.remove(iter)
 	def extrahiere(self,jsohn):
 
-		videoIter=None	
+		videoIter=None
 		videoIter=self.model.append(None)
 		for i,txt in enumerate(["title","alt_title","webpage_url","id","uploader",
 		"uploader_id","uploader_url","uploader_date","license","creator","thumbnail","description",]):
 			self.model.set_value(videoIter,i,jsohn.get(txt))
-		
+
 		if jsohn.get('formats') is not None:
 			for a,b in enumerate(["default","best","worst"]):
 				formatIter=self.model.append(videoIter)

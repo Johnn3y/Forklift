@@ -19,22 +19,20 @@ import gi
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
-from items import InfoExtraction,Download
+from .items import InfoExtraction,Download
 
-UI_FILE = "gtubedl/applicationwindow.ui"
-		
+UI_FILE = "/org/johnn3y/gtubedl/applicationwindow.ui"
 class ApplicationWindow():
-
 	def create_window(self,app):
 		self.builder = Gtk.Builder()
-		self.builder.add_from_file(UI_FILE)
-		
+		self.builder.add_from_resource(UI_FILE)
+
 		self.window = self.builder.get_object('applicationwindow')
 		self.builder.connect_signals(self)
-				
+
 		tv= self.builder.get_object('gtktv')
 		tv.get_selection().set_mode(Gtk.SelectionMode.MULTIPLE)
-		
+
 		tv.drag_dest_set(Gtk.DestDefaults.ALL,[],Gdk.DragAction.COPY)
 		tv.drag_dest_add_text_targets()
 		for i,txt in enumerate(["title","alt_title","webpage_url","id","uploader",
@@ -45,7 +43,7 @@ class ApplicationWindow():
 				column.pack_start(cell,True)
 				column.set_cell_data_func(cell, self.get_anything, i)
 				tv.append_column(column)
-			
+
 
 
 		########
@@ -73,14 +71,14 @@ class ApplicationWindow():
 		combobox.add_attribute(rentext,"text",0)
 
 		self.window.show_all()
-		return self.window
 
+		return self.window
 	def get_status(self, columnm, cell, model, iter, data):
 		cell.set_property('text',model.get_value(iter, 0))
 
 	def get_progress(self, columnm, cell, model, iter, data):
 		downloaded_bytes=model.get_value(iter, 3)
-		
+
 		try:
 			downloaded_bytes=float(downloaded_bytes)
 			total_bytes=float(model.get_value(iter, 4))
@@ -91,12 +89,12 @@ class ApplicationWindow():
 				cell.set_property('value',(downloaded_bytes/total_bytes_estimate)*100)
 			except TypeError:#NoneType
 				cell.set_property('pulse',0)
-	
+
 	def get_title(self, columnm, cell, model, iter, data):
-		cell.set_property('text',model.get_value(iter, 1))		
+		cell.set_property('text',model.get_value(iter, 1))
 	def get_vidname(self, columnm, cell, model, iter, data):
 		cell.set_property('text',model.get_value(iter, 0))
-			
+
 	def get_anything(self, columnm, cell, model, iter, data):
 		cell.set_property('text',model.get_value(iter, data))
 
@@ -106,7 +104,7 @@ class ApplicationWindow():
 		popover = self.builder.get_object('addpopover')
 		if togglebutton.get_active():
 			popover.show_all()
-		
+
 	def on_ok_clicked(self, okbutton):
 		url1=self.builder.get_object('addpopoverentry')
 		self.ubergabe(url1.get_text())
@@ -115,7 +113,7 @@ class ApplicationWindow():
 	def on_paste_clicked(self, pastebutton):
 		clipboard=Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		self.ubergabe(clipboard.wait_for_text())
-		
+
 	def ubergabe(self,url):
 		#url2=[]
 		#url2.append(url)
@@ -128,7 +126,7 @@ class ApplicationWindow():
 		pass
 		#dlprocess=Neu2()
 		#dlprocess.prepareDL(item.webpage_url,item.ydl_opts,item.path)
-		
+
 	def on_properties_clicked(self, propertiesbutton):
 		return None
 
@@ -149,7 +147,7 @@ class ApplicationWindow():
 	def on_downloadpopover2_closed(self,popover):
 		button = self.builder.get_object('settingsbutton')
 		button.set_active(False)
-		
+
 	def on_selectionbutton_toggled(self,button):
 		listbox=self.builder.get_object('box2')
 		ab=self.builder.get_object('actionbar')
@@ -197,8 +195,8 @@ class ApplicationWindow():
 			ydl_opts['format']=form
 		except TypeError:
 			pass
-			
-		
+
+
 		url=self.builder.get_object('ficb').get_uri()
 		url=url.replace("file://","")
 		ydl_opts['postprocessors']=[]
@@ -207,13 +205,13 @@ class ApplicationWindow():
 		else:
 			ydl_opts['keeporiginal']=self.builder.get_object('keepori').get_active()
 			zi=[("audcb","FFmpegExtractAudio",'preferredcodec'),("vidcb","FFmpegVideoConvertor","preferredformat")]
-			
+
 			for aha,behe,ceh in zi:
 				gg=self.builder.get_object(aha).get_active_id()
 				if gg != "off":
 					aq={}
 					aq={'key':behe,ceh:gg}
-					if aha=="audcb":	
+					if aha=="audcb":
 						pass
 					ydl_opts['postprocessors'].append(aq)
 		for a,b in [("username","ruser"),("password","rpw")]:
@@ -223,45 +221,45 @@ class ApplicationWindow():
 
 		embt=self.builder.get_object('embedthumbnail')
 		if embt.get_active():
-			ydl_opts['postprocessors'].append({'key':'EmbedThumbnail'})	
+			ydl_opts['postprocessors'].append({'key':'EmbedThumbnail'})
 		print(ydl_opts)
 		for v in value:
 			n2=Download(self.builder.get_object('dloadstatusts'),v,ydl_opts,url)
 			n2.start()
-		
+
 	def on_deleteselectedbutton_clicked(self,button):
 		for l in lists:
-			MyList.get_list().remove(l.get_index())	
+			MyList.get_list().remove(l.get_index())
 
 	def on_postprocessorsetbutton_toggled(self,button):
 		pass
-			
+
 	def on_settingsbutton_toggled(self,togglebutton):
 		popover=self.builder.get_object('settingspopover')
 		pathchooser=self.builder.get_object('ficb')
 		pathchooser.set_current_folder('.')
 		if togglebutton.get_active():
 			popover.show_all()
-			
+
 	def on_detailsbutton_toggled(self,togglebutton):
 		popover=self.builder.get_object('downloadpopover')
 		if togglebutton.get_active():
 			popover.show_all()
-	
+
 	def on_cancel_clicked(self,button):
 		popover = self.builder.get_object('addpopover')
 		popover.popdown()
-		
+
 	def on_errorls_row_inserted(self,row,iter,data):
 		reveal = self.builder.get_object('reveal')
 		reveal.set_reveal_child(True)
-		
+
 	def on_errorls_row_deleted(self,model,data):
 		reveal = self.builder.get_object('reveal')
 		reveal.set_reveal_child(False)
-		
+
 	def get_errormsg(self, columnm, cell, model, iter, data):
 		cell.set_property('text',model.get_value(iter, 0))
-		
+
 	def on_window_destroy(self, window):
 		Gtk.main_quit()

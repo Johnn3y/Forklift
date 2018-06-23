@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=gtube-dl
+Exec=gtube-dl
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

@@ -19,10 +19,10 @@ import sys
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gio, Gtk
-from applicationwindow import ApplicationWindow
+from .applicationwindow import ApplicationWindow
 
-ABOUTDIALOG_FILE="gtubedl/aboutdialog.ui"
-APPMENU_FILE="gtubedl/gtk/menus-appmenu.ui"
+ABOUTDIALOG_FILE="/org/johnn3y/gtubedl/aboutdialog.ui"
+APPMENU_FILE="/org/johnn3y/gtubedl/menus-appmenu.ui"
 
 class Application(Gtk.Application):
 
@@ -30,15 +30,15 @@ class Application(Gtk.Application):
 		super().__init__(*args,**kwargs)
 
 		GLib.set_application_name("Gtube-dl")
-		GLib.set_prgname('gtubedl')
+		GLib.set_prgname('gtube-dl')
 		self.set_application_id("org.johnn3y.gtubedl")
 
 	def do_startup(self):
 		Gtk.Application.do_startup(self)
-		
+
 		self.build_app_menu()
 
-		
+
 
 
 
@@ -46,7 +46,7 @@ class Application(Gtk.Application):
 		applicationwindow=ApplicationWindow()
 		self.window=applicationwindow.create_window(self)
 		self.window.set_application(self)#ka was ich da mach
-		self.window.set_title("Gtube-dl")#ka was ich da mach	
+		self.window.set_title("Gtube-dl")#ka was ich da mach
 		self.window.present()
 
 
@@ -59,15 +59,15 @@ class Application(Gtk.Application):
 			simpleAction = Gio.SimpleAction.new(action,None)
 			simpleAction.connect('activate',callback)
 			self.add_action(simpleAction)
- 
+
 		build=Gtk.Builder()
-		build.add_from_file(APPMENU_FILE)
+		build.add_from_resource(APPMENU_FILE)
 		obj=build.get_object("app-menu")
 		self.set_app_menu(build.get_object("app-menu"))
-			
+
 	def on_about(self,action,param):
 		builder=Gtk.Builder()
-		builder.add_from_file(ABOUTDIALOG_FILE)
+		builder.add_from_resource(ABOUTDIALOG_FILE)
 		about=builder.get_object('aboutdialog')
 		about.set_transient_for(self.window)
 		about.show()
@@ -77,4 +77,3 @@ class Application(Gtk.Application):
 
 	def on_quit(self,action,param):
 		self.quit()
-		

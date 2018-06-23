@@ -1,0 +1,5 @@
+data/org.johnn3y.gtubedl.desktop.in
+data/org.johnn3y.gtubedl.appdata.xml.in
+data/org.johnn3y.gtubedl.gschema.xml
+src/window.uisrc/main.py
+src/window.py
