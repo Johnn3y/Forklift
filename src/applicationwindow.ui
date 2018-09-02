@@ -90,7 +90,7 @@
     <property name="title">Gtube-dl</property>
     <property name="default_width">500</property>
     <property name="default_height">400</property>
-    <property name="icon_name">youtube-dl</property>
+    <property name="icon_name">org.johnn3y.gtubedl</property>
     <signal name="destroy" handler="on_window_destroy" swapped="no"/>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="headerbar">

@@ -11,7 +11,7 @@
     <property name="comments" translatable="yes">A Simple GUI for youtube-dl using PyGObject</property>
     <property name="website">https://github.com/Johnn3y/Gtube-dl/</property>
     <property name="website_label" translatable="yes">Github</property>
-    <property name="logo_icon_name">youtube-dl</property>
+    <property name="logo_icon_name">org.johnn3y.gtubedl</property>
     <property name="license_type">gpl-3-0</property>
     <signal name="response" handler="on_about_response" swapped="no"/>
     <child>
