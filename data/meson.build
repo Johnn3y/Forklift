@@ -1,3 +1,13 @@
+install_data(
+  'org.johnn3y.gtubedl.svg',
+  install_dir : join_paths(get_option('datadir'), 'icons/hicolor/scalable/apps')
+)
+
+install_data(
+  'org.johnn3y.gtubedl-symbolic.svg',
+  install_dir : join_paths(get_option('datadir'), 'icons/hicolor/symbolic/apps')
+)
+
 desktop_file = i18n.merge_file(
   input: 'org.johnn3y.gtubedl.desktop.in',
   output: 'org.johnn3y.gtubedl.desktop',
@@ -28,17 +38,6 @@ if appstream_util.found()
     args: ['validate', appstream_file]
   )
 endif
-
-install_data(
-  'org.johnn3y.gtubedl.svg',
-  install_dir : join_paths(get_option('datadir'), 'icons/hicolor/scalable/apps')
-)
-
-install_data(
-  'org.johnn3y.gtubedl-symbolic.svg',
-  install_dir : join_paths(get_option('datadir'), 'icons/hicolor/symbolic/apps')
-)
-
 
 install_data('org.johnn3y.gtubedl.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
