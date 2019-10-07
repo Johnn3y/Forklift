@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop">
-	<id>com.github.Johnn3y.Forklift.desktop</id>
-	<metadata_license>CC0-1.0</metadata_license>
-	<project_license>GPL-3.0-or-later</project_license>
-	<description>
-	</description>
+<component type="desktop-application">
+  <id>com.github.Johnn3y.Forklift</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Forklift</name>
+  <summary>Video and audio download application</summary>
+  <description>
+    <p>
+    Forklift is a program used to download video and audio files from popular Video and Audio platforms. Using the popular CLI application youtube-dl as base, Forklift supports dozents of websites. Forklift is also optimized for smaller screens, so you can easily navigate on your mobile device.</p>
+    <p>Main Features:</p>
+      <ul>
+        <li>Search function for YouTube and Soundcloud</li>
+        <li>Download original files or</li>
+        <li>Convert video and audio files to other formats like mp3, ogg, etc</li>
+      </ul>
+  </description>
+  ​<screenshots>
+    <screenshot type="default">
+      <caption>Main Window</caption>
+      <image>https://raw.githubusercontent.com/Johnn3y/Forklift/master/data/screenshots/1.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Search for YouTube and Soundcloud</caption>
+      <image>https://raw.githubusercontent.com/Johnn3y/Forklift/master/data/screenshots/2.png</image>
+      </screenshot>
+    <screenshot>
+      <caption>Select format and download directly</caption>
+      <image>https://raw.githubusercontent.com/Johnn3y/Forklift/master/data/screenshots/3.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Download Status</caption>
+      <image>https://raw.githubusercontent.com/Johnn3y/Forklift/master/data/screenshots/4.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Download and convert files</caption>
+      <image>https://raw.githubusercontent.com/Johnn3y/Forklift/master/data/screenshots/5.png</image>
+      </screenshot>
+    </screenshots>
+  <launchable type="desktop-id">com.github.Johnn3y.Forklift.desktop</launchable>
+  <url type="homepage">http://github.com/Johnn3y/Forklift</url>
+  <update_contact>http://github.com/Johnn3y</update_contact>
+  <translation type="gettext">Forklift</translation>
 </component>
