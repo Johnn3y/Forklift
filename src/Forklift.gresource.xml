@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/org/johnn3y/gtubedl">
+  <gresource prefix="/com/github/Johnn3y/Forklift">
     <file>applicationwindow.ui</file>
     <file>aboutdialog.ui</file>
     <file>menus-appmenu.ui</file>

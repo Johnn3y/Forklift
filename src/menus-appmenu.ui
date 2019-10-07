@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<interface domain="gtube-dl">
+<interface domain="Forklift">
   <menu id="app-menu">
     <section>
       <item>
         <attribute name="action">app.about</attribute>
-        <attribute name="label" translatable="yes">_About Gtube-dl</attribute>
+        <attribute name="label" translatable="yes">_About Forklift</attribute>
       </item>
     </section>
   </menu>

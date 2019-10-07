@@ -1,5 +1,5 @@
 {
-    "app-id" : "org.johnn3y.gtubedl",
+    "app-id" : "com.github.Johnn3y.Forklift",
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "3.34",
     "sdk" : "org.gnome.Sdk",
@@ -71,12 +71,12 @@
                 }
             ]
         },		{
-	    "name" : "Gtube-dl",
+	    "name" : "Forklift",
 	    "buildsystem" : "meson",
 	    "sources" : [
 		{
 		    "type" : "git",
-		    "url" : "https://github.com/johnn3y/Gtube-dl",
+		    "url" : "https://github.com/johnn3y/Forklift",
 		    "branch":"gnome-builder"
 		}
 

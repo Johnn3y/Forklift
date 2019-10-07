@@ -1,16 +1,16 @@
 install_data(
-  'org.johnn3y.gtubedl.svg',
+  'com.github.Johnn3y.Forklift.svg',
   install_dir : join_paths(get_option('datadir'), 'icons/hicolor/scalable/apps')
 )
 
 install_data(
-  'org.johnn3y.gtubedl-symbolic.svg',
+  'com.github.Johnn3y.Forklift-symbolic.svg',
   install_dir : join_paths(get_option('datadir'), 'icons/hicolor/symbolic/apps')
 )
 
 desktop_file = i18n.merge_file(
-  input: 'org.johnn3y.gtubedl.desktop.in',
-  output: 'org.johnn3y.gtubedl.desktop',
+  input: 'com.github.Johnn3y.Forklift.desktop.in',
+  output: 'com.github.Johnn3y.Forklift.desktop',
   type: 'desktop',
   po_dir: '../po',
   install: true,
@@ -25,8 +25,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-  input: 'org.johnn3y.gtubedl.appdata.xml.in',
-  output: 'org.johnn3y.gtubedl.appdata.xml',
+  input: 'com.github.Johnn3y.Forklift.appdata.xml.in',
+  output: 'com.github.Johnn3y.Forklift.appdata.xml',
   po_dir: '../po',
   install: true,
   install_dir: join_paths(get_option('datadir'), 'appdata')
@@ -39,7 +39,7 @@ if appstream_util.found()
   )
 endif
 
-install_data('org.johnn3y.gtubedl.gschema.xml',
+install_data('com.github.Johnn3y.Forklift.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 

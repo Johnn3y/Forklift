@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=gtube-dl
-Exec=gtube-dl
+Name=Forklift
+Exec=Forklift
 Terminal=false
 Type=Application
 Categories=GTK;
 StartupNotify=true
-Icon=org.johnn3y.gtubedl.svg
+Icon=com.github.Johnn3y.Forklift.svg

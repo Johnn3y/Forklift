@@ -25,7 +25,7 @@ from gi.repository import Gtk, Gdk, GObject, Gio, Handy
 # import .items
 
 
-@Gtk.Template(resource_path='/org/johnn3y/gtubedl/applicationwindow.ui')
+@Gtk.Template(resource_path='/com/github/Johnn3y/Forklift/applicationwindow.ui')
 class ApplicationWindow(Gtk.ApplicationWindow):
     __gtype_name__ = 'ApplicationWindow'
     #gtktv = Gtk.Template.Child()
@@ -276,7 +276,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         dialog.set_visible(True)
 
 
-@Gtk.Template(resource_path='/org/johnn3y/gtubedl/formats_actionrow.ui')
+@Gtk.Template(resource_path='/com/github/Johnn3y/Forklift/formats_actionrow.ui')
 class FormatsRow(Gtk.Box):
     __gtype_name__ = 'Box2'
     formatsrow = Gtk.Template.Child()
@@ -285,7 +285,7 @@ class FormatsRow(Gtk.Box):
         super().__init__(**kwargs)
 
 
-@Gtk.Template(resource_path='/org/johnn3y/gtubedl/handydialog.ui')
+@Gtk.Template(resource_path='/com/github/Johnn3y/Forklift/handydialog.ui')
 class HandyDialog(Handy.Dialog):
     __gtype_name__ = 'Dialog'
     vp = Gtk.Template.Child()
@@ -327,7 +327,7 @@ class HandyDialog(Handy.Dialog):
         self.destroy()
 
 
-@Gtk.Template(resource_path='/org/johnn3y/gtubedl/items_actionrow.ui')
+@Gtk.Template(resource_path='/com/github/Johnn3y/Forklift/items_actionrow.ui')
 class MyLabel(Gtk.Box):
     __gtype_name__ = 'Box'
     lbl = Gtk.Template.Child()
@@ -339,7 +339,7 @@ class MyLabel(Gtk.Box):
                 j(i)
 
 
-@Gtk.Template(resource_path='/org/johnn3y/gtubedl/downloadprogressactionrow.ui')
+@Gtk.Template(resource_path='/com/github/Johnn3y/Forklift/downloadprogressactionrow.ui')
 class Downloadprogressactionrow(Gtk.Box):
     __gtype_name__ = 'Downloadprogressactionrow'
     download_progress_actionrow = Gtk.Template.Child()
@@ -352,7 +352,7 @@ class Downloadprogressactionrow(Gtk.Box):
                 j(i)
 
 
-@Gtk.Template(resource_path='/org/johnn3y/gtubedl/infopopoverbox.ui')
+@Gtk.Template(resource_path='/com/github/Johnn3y/Forklift/infopopoverbox.ui')
 class InfoPopoverBox(Gtk.Box):
     __gtype_name__ = 'Expander'
     title = Gtk.Template.Child()

@@ -160,7 +160,7 @@ class Download(threading.Thread):
             if stat is d['status']:
                 self.model.set_value(self.iter, 0, d['status'])
         if d['status'] == 'finished' or d['status'] == 'error':
-            Notify.init("Gtube-dl")
+            Notify.init("Forklift")
             notification = Notify.Notification.new(self.model.get_value(
                 self.iter, 0), self.model.get_value(self.iter, 1))
             notification.show()
@@ -177,7 +177,7 @@ class Download(threading.Thread):
             try:
                 ydl.download([self.url])
             except youtube_dl.utils.DownloadError as e:
-                Notify.init("Gtube-dl")
+                Notify.init("Forklift")
                 notification = Notify.Notification.new('Error', str(e))
                 notification.show()
 
@@ -205,6 +205,6 @@ class InfoExtraction(threading.Thread):
                         GLib.idle_add(self.callback, Item(d))
             except youtube_dl.utils.DownloadError as e:
                 self.d = None
-                Notify.init("Gtube-dl")
+                Notify.init("Forklift")
                 n=Notify.Notification.new(str(e))
                 n.show()

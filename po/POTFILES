@@ -1,5 +1,5 @@
-data/org.johnn3y.gtubedl.desktop.in
-data/org.johnn3y.gtubedl.appdata.xml.in
-data/org.johnn3y.gtubedl.gschema.xml
+data/com.github.Johnn3y.Forklift.desktop.in
+data/com.github.Johnn3y.Forklift.appdata.xml.in
+data/com.github.Johnn3y.Forklift.gschema.xml
 src/window.uisrc/main.py
 src/window.py

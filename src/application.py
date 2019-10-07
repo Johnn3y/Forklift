@@ -22,7 +22,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '0.0')
 
-APPMENU_FILE = "/org/johnn3y/gtubedl/menus-appmenu.ui"
+APPMENU_FILE = "/com/github/Johnn3y/Forklift/menus-appmenu.ui"
 
 
 class Application(Gtk.Application):
@@ -30,9 +30,9 @@ class Application(Gtk.Application):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        GLib.set_application_name("Gtube-dl")
-        GLib.set_prgname('gtube-dl')
-        self.set_application_id("org.johnn3y.gtubedl")
+        GLib.set_application_name("Forklift")
+        GLib.set_prgname('Forklift')
+        self.set_application_id("com.github.Johnn3y.Forklift")
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
@@ -40,7 +40,7 @@ class Application(Gtk.Application):
         self.build_app_menu()
 
     def do_activate(self):
-        self.window = ApplicationWindow(application=self, title="Gtube-dl")
+        self.window = ApplicationWindow(application=self, title="Forklift")
         self.window.present()
 
     def build_app_menu(self):
@@ -63,7 +63,7 @@ class Application(Gtk.Application):
         ad.show()
 
 
-@Gtk.Template(resource_path='/org/johnn3y/gtubedl/aboutdialog.ui')
+@Gtk.Template(resource_path='/com/github/Johnn3y/Forklift/aboutdialog.ui')
 class AboutDialog(Gtk.AboutDialog):
     __gtype_name__ = "AboutDialog"
 

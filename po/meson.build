@@ -1,1 +1,1 @@
-i18n.gettext('gtube-dl', preset: 'glib')
+i18n.gettext('Forklift', preset: 'glib')

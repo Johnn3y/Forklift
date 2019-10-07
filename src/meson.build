@@ -1,9 +1,9 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-moduledir = join_paths(pkgdatadir, 'gtube_dl')
+moduledir = join_paths(pkgdatadir, 'Forklift')
 gnome = import('gnome')
 
-gnome.compile_resources('gtube-dl',
-  'gtube-dl.gresource.xml',
+gnome.compile_resources('Forklift',
+  'Forklift.gresource.xml',
   gresource_bundle: true,
   install: true,
   install_dir: pkgdatadir,
@@ -18,14 +18,14 @@ conf.set('localedir', join_paths(get_option('prefix'), get_option('localedir')))
 conf.set('pkgdatadir', pkgdatadir)
 
 configure_file(
-  input: 'gtube-dl.in',
-  output: 'gtube-dl',
+  input: 'Forklift.in',
+  output: 'Forklift',
   configuration: conf,
   install: true,
   install_dir: get_option('bindir')
 )
 
-gtube_dl_sources = [
+Forklift_sources = [
   '__init__.py',
   'main.py',
   'applicationwindow.py',
@@ -34,4 +34,4 @@ gtube_dl_sources = [
   'items.py'
 ]
 
-install_data(gtube_dl_sources, install_dir: moduledir)
+install_data(Forklift_sources, install_dir: moduledir)
