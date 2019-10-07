@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Forklift
+Exec=Forklift
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true
+Icon=com.github.Johnn3y.Forklift.svg

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/github/Johnn3y/Forklift">
+    <file>applicationwindow.ui</file>
+    <file>aboutdialog.ui</file>
+    <file>menus-appmenu.ui</file>
+    <file>items_actionrow.ui</file>
+    <file>infopopoverbox.ui</file>
+    <file>handydialog.ui</file>
+    <file>formats_actionrow.ui</file>
+    <file>downloadprogressactionrow.ui</file>
+  </gresource>
+</gresources>

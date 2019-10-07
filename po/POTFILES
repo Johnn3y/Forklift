@@ -1,0 +1,5 @@
+data/com.github.Johnn3y.Forklift.desktop.in
+data/com.github.Johnn3y.Forklift.appdata.xml.in
+data/com.github.Johnn3y.Forklift.gschema.xml
+src/window.uisrc/main.py
+src/window.py

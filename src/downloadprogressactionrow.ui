@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <requires lib="libhandy" version="0.0"/>
+  <template class="Downloadprogressactionrow" parent="GtkBox">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="HdyActionRow" id="download_progress_actionrow">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="activatable">False</property>
+        <property name="selectable">False</property>
+        <property name="icon_name">download-symbolic</property>
+        <property name="subtitle" translatable="yes">World</property>
+        <property name="title" translatable="yes">Hello</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+  </template>
+</interface>
