@@ -52,7 +52,9 @@
 	    "sources": [
 		{
 		    "type": "git",
-		    "url": "https://github.com/rg3/youtube-dl"
+		    "url": "https://github.com/rg3/youtube-dl",
+		    "tags":["2019.09.28"],
+		    "commit":"f4b865c6136547a5af814526b65c08c89dbe3a14"
 		}
 	    ]
 },

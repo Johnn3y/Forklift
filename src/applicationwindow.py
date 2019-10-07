@@ -22,20 +22,13 @@ import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '0.0')
 from gi.repository import Gtk, Gdk, GObject, Gio, Handy
-# import .items
 
 
 @Gtk.Template(resource_path='/com/github/Johnn3y/Forklift/applicationwindow.ui')
 class ApplicationWindow(Gtk.ApplicationWindow):
     __gtype_name__ = 'ApplicationWindow'
-    #gtktv = Gtk.Template.Child()
-    # treeview=Gtk.Template.Child()
-    # errortv=Gtk.Template.Child()
-    # newcb=Gtk.Template.Child()
     addpopover = Gtk.Template.Child()
     addpopoverentry = Gtk.Template.Child()
-    # realts=Gtk.Template.Child()
-    # errorls=Gtk.Template.Child()
     addbutton = Gtk.Template.Child()
     detailsbutton = Gtk.Template.Child()
     settingsbutton = Gtk.Template.Child()
@@ -43,7 +36,6 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     reveal = Gtk.Template.Child()
     downloadpopover = Gtk.Template.Child()
     settingspopover = Gtk.Template.Child()
-    #dloadstatusts = Gtk.Template.Child()
     addpopoverstack = Gtk.Template.Child()
     searchtype = Gtk.Template.Child()
     gtklb = Gtk.Template.Child()
@@ -100,24 +92,6 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     def progress_model(self, item):
         return Downloadprogressactionrow(title=item.status, subtitle=item.filename)
 
-    def get_status(self, columnm, cell, model, iter, data):
-        cell.set_property('text', model.get_value(iter, 0))
-
-    def get_progress(self, columnm, cell, model, iter, data):
-        downloaded_bytes = model.get_value(iter, 3)
-
-        try:
-            downloaded_bytes = float(downloaded_bytes)
-            total_bytes = float(model.get_value(iter, 4))
-            cell.set_property('value', (downloaded_bytes/total_bytes)*100)
-        except TypeError:  # NoneType
-            try:
-                total_bytes_estimate = float(model.get_value(iter, 5))
-                cell.set_property(
-                    'value', (downloaded_bytes/total_bytes_estimate)*100)
-            except TypeError:  # NoneType
-                cell.set_property('pulse', 0)
-
     @Gtk.Template.Callback()
     def on_popover_toggled(self, togglebutton):
         if togglebutton.get_active():
@@ -128,27 +102,24 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         txt = self.addpopoverentry.get_text()
         if self.addpopoverstack.get_visible_child_name() == "searchbox":
             txt = self.searchtype.get_active_id()+':'+txt
-        self.ubergabe(txt)
+        self.start_download(txt)
         self.addpopover.popdown()
 
     @Gtk.Template.Callback()
     def on_paste_clicked(self, pastebutton):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-        self.ubergabe(clipboard.wait_for_text())
+        self.start_download(clipboard.wait_for_text())
 
-    def ubergabe(self, url):
+    def start_download(self, url):
         thread = InfoExtraction(url, self.callback)
         thread.start()
 
     def callback(self, item):
         self.lstore.append(item)
 
-    def on_properties_clicked(self, propertiesbutton):
-        return None
-
     @Gtk.Template.Callback()
     def on_drag_data_received(self, widget, drag_content, x, y, data, info, time):
-        self.ubergabe(data.get_text())
+        self.start_download(data.get_text())
 
     @Gtk.Template.Callback()
     def on_popover_closed(self, popover):
@@ -182,9 +153,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     @Gtk.Template.Callback()
     def on_downloadselectedbutton_clicked(self, selection):
         self.settingspopover.popdown()
-
         for a in self.gtklb.get_selected_rows():
-            # self.lstore.remove.get(a.get_index())#TODO Fix
             path, ydl_opts = self.get_settings()
             self.real_download(self.lstore.get_item(a.get_index()).webpage_url,ydl_opts,path)
 
@@ -199,6 +168,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         if self.audio_radiobutton.get_active():
             ydl_opts['postprocessors'].append(
                 {'key': 'FFmpegExtractAudio', 'preferredcodec': self.audcb.get_active_id()})
+            ydl_opts['extractaudio']=True
         if self.formatcode_radiobutton.get_active():
             ydl_opts['format'] = self.formatcode_entry.get_text()
         if self.geobypass_switch.get_active():
@@ -227,17 +197,6 @@ class ApplicationWindow(Gtk.ApplicationWindow):
 
         if togglebutton.get_active():
             self.downloadpopover.show_all()
-
-#	@Gtk.Template.Callback()
-#	def on_errorls_row_inserted(self,row,iter,data):
-#		self.reveal.set_reveal_child(True)
-
-#	@Gtk.Template.Callback()
-#	def on_errorls_row_deleted(self,model,data):
-#		self.reveal.set_reveal_child(False)
-#
-#	def get_errormsg(self, columnm, cell, model, iter, data):
-#		cell.set_property('text',model.get_value(iter, 0))
 
     @Gtk.Template.Callback()
     def on_row_selected(self, t):
