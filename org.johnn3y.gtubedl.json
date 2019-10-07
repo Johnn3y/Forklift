@@ -1,7 +1,7 @@
 {
     "app-id" : "org.johnn3y.gtubedl",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "3.28",
+    "runtime-version" : "3.34",
     "sdk" : "org.gnome.Sdk",
     "finish-args" : [
 	"--socket=wayland",
@@ -56,7 +56,21 @@
 		}
 	    ]
 },
-	{
+        {
+            "name" : "libhandy",
+            "buildsystem" : "meson",
+            "config-opts": [
+                    "-Dexamples=false",
+                    "-Dtests=false"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://source.puri.sm/Librem5/libhandy",
+                    "branch" : "v0.0.11"
+                }
+            ]
+        },		{
 	    "name" : "Gtube-dl",
 	    "buildsystem" : "meson",
 	    "sources" : [

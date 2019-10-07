@@ -27,7 +27,6 @@ configure_file(
 
 gtube_dl_sources = [
   '__init__.py',
-  'gi_composites.py',
   'main.py',
   'applicationwindow.py',
   'application.py',
