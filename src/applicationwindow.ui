@@ -67,7 +67,7 @@
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="icon_name">browser-download-symbolic</property>
+                <property name="icon_name">download-symbolic</property>
               </object>
             </child>
             <accelerator key="i" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
@@ -263,7 +263,7 @@
               <packing>
                 <property name="name">searchbox</property>
                 <property name="title" translatable="yes">Search</property>
-                <property name="icon_name">search-symbolic</property>
+                <property name="icon_name">edit-find-symbolic</property>
                 <property name="position">1</property>
               </packing>
             </child>
