@@ -59,6 +59,25 @@
 	    ]
 },
         {
+            "name" : "libdazzle",
+            "config-opts" : [
+                "--libdir=/app/lib",
+                "--buildtype=release"
+            ],
+            "buildsystem" : "meson",
+            "builddir" : true,
+            "cleanup" : [
+                "/bin"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libdazzle.git",
+                    "branch" : "3.34.1"
+                }
+            ]
+        },
+        {
             "name" : "libhandy",
             "buildsystem" : "meson",
             "config-opts": [

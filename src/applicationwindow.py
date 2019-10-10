@@ -21,7 +21,8 @@ import gi
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '0.0')
-from gi.repository import Gtk, Gdk, GObject, Gio, Handy
+gi.require_version('Dazzle', '1.0')
+from gi.repository import Gtk, Gdk, GObject, Gio, Handy, Dazzle
 
 
 @Gtk.Template(resource_path='/com/github/Johnn3y/Forklift/applicationwindow.ui')
@@ -40,6 +41,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     searchtype = Gtk.Template.Child()
     gtklb = Gtk.Template.Child()
     vbox = Gtk.Template.Child()
+    dnd_stack = Gtk.Template.Child()
     download_progress_listbox = Gtk.Template.Child()
     actionbar = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
@@ -75,16 +77,27 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.vbox.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
-        self.vbox.drag_dest_add_text_targets()
+        self.dnd_stack.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
+        self.dnd_stack.drag_dest_add_text_targets()
 
         self.set_property("lstore",Gio.ListStore.new(Item))
         self.gtklb.bind_model(self.lstore, self.mflb)
+        self.lstore.connect("items_changed",self.on_lstore_items_changed)
+
+        self.empty_state = EmptyState()
+        self.dnd_stack.add(self.empty_state)
+        self.dnd_stack.set_visible_child(self.empty_state)
 
         self.set_property("downloadprogressliststore",Gio.ListStore.new(DownloadProgressItem))
         self.refresh_bind_model()
         self.show_all()
         self.actionbar.set_visible(False)
+
+    def on_lstore_items_changed(self, pos, rm, a, d):
+        if (len(self.lstore) == 0):
+            self.dnd_stack.set_visible_child(self.empty_state)
+        else:
+            self.dnd_stack.set_visible_child(self.vbox)
 
     def mflb(self, item):
         return MyLabel(title=item.title, subtitle=item.subtitle)
@@ -329,3 +342,12 @@ class InfoPopoverBox(Gtk.Box):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+class EmptyState(Dazzle.EmptyState):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.set_icon_name("com.github.Johnn3y.Forklift-symbolic")
+        self.set_title("Forklift")
+        self.set_subtitle("• Click ➕ above to type in URL or to search,\n• click 📋 above to paste URL from Clipboard, or\n• Drag-and-Drop URL here.")
+        self.show()

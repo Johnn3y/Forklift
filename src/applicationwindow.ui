@@ -80,59 +80,26 @@
       </object>
     </child>
     <child>
-      <object class="GtkBox" id="vbox">
+      <object class="GtkStack" id="dnd_stack">
+        <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
         <signal name="drag-data-received" handler="on_drag_data_received" swapped="no"/>
         <child>
-          <object class="GtkRevealer" id="reveal">
-            <property name="visible">True</property>
+          <object class="GtkBox" id="vbox">
             <property name="can_focus">False</property>
-            <property name="transition_type">none</property>
-            <child>
-              <object class="GtkTreeView" id="errortv">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <child internal-child="selection">
-                  <object class="GtkTreeSelection"/>
-                </child>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
             <property name="orientation">vertical</property>
+            <property name="spacing">2</property>
             <child>
-              <object class="GtkScrolledWindow">
+              <object class="GtkRevealer" id="reveal">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="vexpand">True</property>
-                <property name="shadow_type">in</property>
+                <property name="can_focus">False</property>
+                <property name="transition_type">none</property>
                 <child>
-                  <object class="GtkViewport">
+                  <object class="GtkTreeView" id="errortv">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="vexpand">True</property>
-                    <child>
-                      <object class="GtkListBox" id="gtklb">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="selection_mode">multiple</property>
-                        <property name="activate_on_single_click">False</property>
-                        <signal name="row-activated" handler="on_row_activated" swapped="no"/>
-                        <signal name="selected-rows-changed" handler="on_row_selected" swapped="no"/>
-                      </object>
+                    <property name="can_focus">True</property>
+                    <child internal-child="selection">
+                      <object class="GtkTreeSelection"/>
                     </child>
                   </object>
                 </child>
@@ -144,16 +111,35 @@
               </packing>
             </child>
             <child>
-              <object class="GtkBox" id="actionbar">
+              <object class="GtkBox">
+                <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkToggleButton" id="settingsbutton">
-                    <property name="label">gtk-save</property>
+                  <object class="GtkScrolledWindow">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_stock">True</property>
-                    <signal name="toggled" handler="on_settingsbutton_toggled" swapped="no"/>
+                    <property name="vexpand">True</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkViewport">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="vexpand">True</property>
+                        <child>
+                          <object class="GtkListBox" id="gtklb">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="selection_mode">multiple</property>
+                            <property name="activate_on_single_click">False</property>
+                            <signal name="row-activated" handler="on_row_activated" swapped="no"/>
+                            <signal name="selected-rows-changed" handler="on_row_selected" swapped="no"/>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -162,35 +148,59 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="deleteselectedbuttonold">
-                    <property name="label">gtk-delete</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_stock">True</property>
-                    <signal name="clicked" handler="on_deleteselectedbutton_clicked" swapped="no"/>
-                    <signal name="clicked" handler="on_new_deleteselectedbutton_clicked" swapped="no"/>
+                  <object class="GtkBox" id="actionbar">
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkToggleButton" id="settingsbutton">
+                        <property name="label">gtk-save</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="toggled" handler="on_settingsbutton_toggled" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="deleteselectedbuttonold">
+                        <property name="label">gtk-delete</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="clicked" handler="on_deleteselectedbutton_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_new_deleteselectedbutton_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="pack_type">end</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="pack_type">end</property>
-                    <property name="position">3</property>
+                    <property name="position">5</property>
                   </packing>
                 </child>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="pack_type">end</property>
-                <property name="position">5</property>
+                <property name="position">1</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
+            <property name="name">page0</property>
+            <property name="title" translatable="yes">page0</property>
           </packing>
         </child>
       </object>
