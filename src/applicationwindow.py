@@ -177,7 +177,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         # defaultsetbutton=Gtk.Template.Child()
         if self.video_radiobutton.get_active():
             ydl_opts['postprocessors'].append(
-                {'key': 'FFmpegVideoConvertor', 'format': self.vidcb.get_active_id()})
+                {'key': 'FFmpegVideoConvertor', 'preferredformat': self.vidcb.get_active_id()})
         if self.audio_radiobutton.get_active():
             ydl_opts['postprocessors'].append(
                 {'key': 'FFmpegExtractAudio', 'preferredcodec': self.audcb.get_active_id()})
