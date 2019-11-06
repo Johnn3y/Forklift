@@ -59,25 +59,37 @@ class Format(GObject.GObject):
         # Create title and subtitle reprs.
         sst = ""
         fs = ""
-        onlys = ""
-        def h(x): return '' if x is None else x
-        self.icon_name = "video-x-generic"
-        for x, y, z in ((self.vcodec, " - audio only", "audio-x-generic"), (self.acodec, " - video only", "video-x-generic")):
-            if x == 'none':
-                onlys += y
-                if x != self.vcodec:
-                    for f, g in ((self.width, 'x'), (self.height, ' ')):
-                        if f is not None:
-                            fs += f+g
-                else:
-                    self.icon_name = z
 
-        for x, y in ((self.tbr, "k - "), (self.filesize, " Bytes")):
+        choices={(True,True):"video-x-generic-symbolic",("none",True):"audio-x-generic-symbolic",(True,"none"):"audio-volume-muted-symbolic"}
+        def g(x): return x if x == "none" else True
+        self.icon_name=choices[(g(self.vcodec),g(self.acodec))]
+
+        if self.vcodec is not None:
+            for f, g in ((self.width, 'x'), (self.height, ' ')):
+                if f is not None:
+                    fs += f+g
+
+        base1000={"base":1000,'list':[(1,'kB'),(2,'MB'),(3,'GB'),(4,'TB'),(5,'PB')]}
+        for x, y in ((self.tbr, "k"), self.conv(base1000, self.filesize)):
             if x is not None:
-                sst += x+y
+                sst +=" - "+x+y
+        def h(x): return '' if x is None else x
         self.title_repr = h(self.ext)+" - "+h(fs) + \
-            "("+h(self.format_note)+") "+h(onlys)
-        self.subtitle_repr = self.format_id+" - "+sst
+            "("+h(self.format_note)+")"
+        self.subtitle_repr = self.format_id+sst
+    def conv(self, bdict, by):
+        if by is None:
+            return None,None
+        for a,b in bdict['list']:
+            mul=pow(bdict['base'],a)
+            by=int(by)
+            d=by/mul
+            if d >= 1 and d < bdict['base']:
+                c=pow(10,2)
+                d=int(c*d)
+                d=d/c
+                return str(d)," "+b
+        return str(by), " Bytes"
 
 
 class DownloadProgressItem(GObject.GObject):
