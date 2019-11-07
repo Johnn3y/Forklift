@@ -196,10 +196,11 @@ class Download(threading.Thread):
 
 class InfoExtraction(threading.Thread):
 
-    def __init__(self, url, callback):
+    def __init__(self, url, callback, change_extraction_thread_counter):
         threading.Thread.__init__(self)
         self.url = url
         self.callback = callback
+        self.change_extraction_thread_counter = change_extraction_thread_counter
 
     def run(self):
         with youtube_dl.YoutubeDL() as ydl:
@@ -220,3 +221,5 @@ class InfoExtraction(threading.Thread):
                 Notify.init("Forklift")
                 n=Notify.Notification.new(str(e))
                 n.show()
+            finally:
+                GLib.idle_add(self.change_extraction_thread_counter,False)

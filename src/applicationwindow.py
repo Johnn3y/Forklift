@@ -74,6 +74,8 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     lstore = GObject.Property(type=Gio.ListStore)
     downloadprogressliststore = GObject.Property(type=Gio.ListStore)
 
+    extraction_thread_counter = GObject.Property(type=int)
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -105,6 +107,17 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     def progress_model(self, item):
         return Downloadprogressactionrow(title=item.status, subtitle=item.filename)
 
+    def change_extraction_thread_counter(self, inc):#if bool(inc) increment else decrement
+        if inc:
+            self.extraction_thread_counter+=1
+        else:
+            self.extraction_thread_counter-=1
+
+        if self.extraction_thread_counter==0:
+            self.spinner.stop()
+        else:
+            self.spinner.start()
+
     @Gtk.Template.Callback()
     def on_popover_toggled(self, togglebutton):
         if togglebutton.get_active():
@@ -124,7 +137,8 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         self.start_download(clipboard.wait_for_text())
 
     def start_download(self, url):
-        thread = InfoExtraction(url, self.callback)
+        self.change_extraction_thread_counter(True)
+        thread = InfoExtraction(url, self.callback, self.change_extraction_thread_counter)
         thread.start()
 
     def callback(self, item):
