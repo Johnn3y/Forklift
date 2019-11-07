@@ -58,7 +58,10 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     audcb = Gtk.Template.Child()
     #
     options_stack = Gtk.Template.Child()
-
+  
+    formats_stack_item = Gtk.Template.Child()  
+    flb = Gtk.Template.Child()
+    
     #
     formatcode_entry = Gtk.Template.Child()
     # authentification
@@ -196,6 +199,9 @@ class ApplicationWindow(Gtk.ApplicationWindow):
             ydl_opts['extractaudio']=True
         if self.options_stack.get_visible_child_name() == "Format code":
             ydl_opts['format'] = self.formatcode_entry.get_text()
+        if self.options_stack.get_visible_child_name() == "formats":
+            format_id = self.lstore.get_item(self.gtklb.get_selected_row().get_index()).formats.get_item(self.flb.get_selected_row().get_index()).format_id
+            ydl_opts['format'] = format_id
         if self.geobypass_switch.get_active():
             for a, b in [("username", self.ruser), ("password", self.rpw), ("videopassword", self.videopassword), ("ap_mso", self.ap_mso), ("ap_username", self.ap_username), ("ap_password", self.ap_password), ("geo_bypass_country", self.geo_bypass_country), ("geo_bypass_ip_block", self.geo_bypass_ip_block)]:
                 c = b.get_text()
@@ -215,7 +221,20 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     def on_settingsbutton_toggled(self, togglebutton):
         self.ficb.set_current_folder('.')
         if togglebutton.get_active():
+            if len(self.gtklb.get_selected_rows()) == 1:
+                self.flb.bind_model(self.lstore.get_item(self.gtklb.get_selected_row().get_index()).formats, self.formats_model)
+                self.formats_stack_item.set_visible(True)
+            else:
+                self.formats_stack_item.set_visible(False)    
             self.settingspopover.show()
+            
+        
+    def formats_model(self, a):
+        fr = FormatsRow()
+        fr.formatsrow.set_icon_name(a.icon_name)
+        fr.formatsrow.set_title(a.title_repr)
+        fr.formatsrow.set_subtitle(a.subtitle_repr)
+        return fr
 
     @Gtk.Template.Callback()
     def on_detailsbutton_toggled(self, togglebutton):
