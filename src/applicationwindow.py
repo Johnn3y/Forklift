@@ -57,9 +57,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     vidcb = Gtk.Template.Child()
     audcb = Gtk.Template.Child()
     #
-    video_radiobutton = Gtk.Template.Child()
-    audio_radiobutton = Gtk.Template.Child()
-    formatcode_radiobutton = Gtk.Template.Child()
+    options_stack = Gtk.Template.Child()
 
     #
     formatcode_entry = Gtk.Template.Child()
@@ -189,14 +187,14 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         path = self.ficb.get_uri().replace("file://", "")
         ydl_opts['postprocessors'] = []
         # defaultsetbutton=Gtk.Template.Child()
-        if self.video_radiobutton.get_active():
+        if self.options_stack.get_visible_child_name() == "Video":
             ydl_opts['postprocessors'].append(
                 {'key': 'FFmpegVideoConvertor', 'preferredformat': self.vidcb.get_active_id()})
-        if self.audio_radiobutton.get_active():
+        if self.options_stack.get_visible_child_name() == "Audio":
             ydl_opts['postprocessors'].append(
                 {'key': 'FFmpegExtractAudio', 'preferredcodec': self.audcb.get_active_id()})
             ydl_opts['extractaudio']=True
-        if self.formatcode_radiobutton.get_active():
+        if self.options_stack.get_visible_child_name() == "Format code":
             ydl_opts['format'] = self.formatcode_entry.get_text()
         if self.geobypass_switch.get_active():
             for a, b in [("username", self.ruser), ("password", self.rpw), ("videopassword", self.videopassword), ("ap_mso", self.ap_mso), ("ap_username", self.ap_username), ("ap_password", self.ap_password), ("geo_bypass_country", self.geo_bypass_country), ("geo_bypass_ip_block", self.geo_bypass_ip_block)]:
@@ -240,18 +238,6 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     @Gtk.Template.Callback()
     def on_authentification_switch_state_set(self, switch, state):
         self.authentification_box.set_visible(state)
-
-    @Gtk.Template.Callback()
-    def on_video_radiobutton_toggled(self, button):
-        self.video_box.set_visible(button.get_active())
-
-    @Gtk.Template.Callback()
-    def on_audio_radiobutton_toggled(self, button):
-        self.audio_box.set_visible(button.get_active())
-
-    @Gtk.Template.Callback()
-    def on_formatcode_radiobutton_toggled(self, button):
-        self.formatcode_box.set_visible(button.get_active())
 
     @Gtk.Template.Callback()
     def on_row_activated(self, t, a):

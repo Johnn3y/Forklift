@@ -3,7 +3,7 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <template class="ApplicationWindow" parent="GtkApplicationWindow">
-    <property name="width_request">300</property>
+    <property name="width_request">400</property>
     <property name="height_request">400</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -403,6 +403,7 @@
   </object>
   <object class="GtkPopover" id="settingspopover">
     <property name="can_focus">False</property>
+    <property name="hexpand">True</property>
     <property name="relative_to">settingsbutton</property>
     <signal name="closed" handler="on_downloadpopover2_closed" swapped="no"/>
     <child>
@@ -427,6 +428,121 @@
           </packing>
         </child>
         <child>
+          <object class="GtkStackSwitcher">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="stack">options_stack</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStack" id="options_stack">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkBox" id="video_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkComboBoxText" id="vidcb">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="active">0</property>
+                    <items>
+                      <item id="best" translatable="yes">best</item>
+                      <item id="mp4" translatable="yes">mp4</item>
+                      <item id="flv" translatable="yes">flv</item>
+                      <item id="ogg" translatable="yes">ogg</item>
+                      <item id="webm" translatable="yes">webm</item>
+                      <item id="mkv" translatable="yes">mkv</item>
+                      <item id="avi" translatable="yes">avi</item>
+                    </items>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">Video</property>
+                <property name="title" translatable="yes">Video</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="audio_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkComboBoxText" id="audcb">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="active">0</property>
+                    <items>
+                      <item id="best" translatable="yes">best</item>
+                      <item id="mp3" translatable="yes">mp3</item>
+                      <item id="aac" translatable="yes">aac</item>
+                      <item id="flac" translatable="yes">flac</item>
+                      <item id="m4a" translatable="yes">m4a</item>
+                      <item id="opus" translatable="yes">opus</item>
+                      <item id="vorbis" translatable="yes">vorbis</item>
+                      <item id="wav" translatable="yes">wav</item>
+                    </items>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">Audio</property>
+                <property name="title" translatable="yes">Audio</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="formatcode_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkEntry" id="formatcode_entry">
+                    <property name="name">format_code</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="placeholder_text" translatable="yes">Enter format code</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">Format code</property>
+                <property name="title" translatable="yes">Format code</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkScrolledWindow">
             <property name="height_request">200</property>
             <property name="visible">True</property>
@@ -442,145 +558,6 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkRadioButton" id="video_radiobutton">
-                        <property name="label" translatable="yes">Video</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="active">True</property>
-                        <property name="draw_indicator">True</property>
-                        <property name="group">formatcode_radiobutton</property>
-                        <signal name="toggled" handler="on_video_radiobutton_toggled" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkBox" id="video_box">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkComboBoxText" id="vidcb">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="active">0</property>
-                            <items>
-                              <item id="best" translatable="yes">best</item>
-                              <item id="mp4" translatable="yes">mp4</item>
-                              <item id="flv" translatable="yes">flv</item>
-                              <item id="ogg" translatable="yes">ogg</item>
-                              <item id="webm" translatable="yes">webm</item>
-                              <item id="mkv" translatable="yes">mkv</item>
-                              <item id="avi" translatable="yes">avi</item>
-                            </items>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkRadioButton" id="audio_radiobutton">
-                        <property name="label" translatable="yes">Audio</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="draw_indicator">True</property>
-                        <property name="group">video_radiobutton</property>
-                        <signal name="toggled" handler="on_audio_radiobutton_toggled" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkBox" id="audio_box">
-                        <property name="can_focus">False</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkComboBoxText" id="audcb">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="active">0</property>
-                            <items>
-                              <item id="best" translatable="yes">best</item>
-                              <item id="mp3" translatable="yes">mp3</item>
-                              <item id="aac" translatable="yes">aac</item>
-                              <item id="flac" translatable="yes">flac</item>
-                              <item id="m4a" translatable="yes">m4a</item>
-                              <item id="opus" translatable="yes">opus</item>
-                              <item id="vorbis" translatable="yes">vorbis</item>
-                              <item id="wav" translatable="yes">wav</item>
-                            </items>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkRadioButton" id="formatcode_radiobutton">
-                        <property name="label" translatable="yes">Format code</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="draw_indicator">True</property>
-                        <property name="group">audio_radiobutton</property>
-                        <signal name="toggled" handler="on_formatcode_radiobutton_toggled" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">4</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkBox" id="formatcode_box">
-                        <property name="can_focus">False</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkEntry" id="formatcode_entry">
-                            <property name="name">format_code</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="placeholder_text" translatable="yes">Enter format code</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">5</property>
-                      </packing>
-                    </child>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
@@ -812,15 +789,6 @@
                         <property name="position">9</property>
                       </packing>
                     </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
                   </object>
                 </child>
               </object>
@@ -829,7 +797,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">1</property>
+            <property name="position">3</property>
           </packing>
         </child>
         <child>
@@ -870,7 +838,7 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="pack_type">end</property>
-            <property name="position">3</property>
+            <property name="position">4</property>
           </packing>
         </child>
       </object>
