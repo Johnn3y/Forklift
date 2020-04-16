@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
+  <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
-  <template class="Box2" parent="GtkBox">
+  <template class="FormatsRow" parent="HdyActionRow">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="orientation">vertical</property>
-    <child>
-      <object class="HdyActionRow" id="formatsrow">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="activatable">False</property>
-        <property name="icon_name">video-x-generic</property>
-        <property name="subtitle" translatable="yes">249 - vp9codec - 7,5 MB</property>
-        <property name="title" translatable="yes">mp4 - Video only - 144p - resolutionm</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
-    </child>
+    <property name="can_focus">True</property>
+    <property name="activatable">False</property>
+    <property name="icon_name">video-x-generic</property>
+    <property name="subtitle" translatable="yes">249 - vp9codec - 7,5 MB</property>
+    <property name="title" translatable="yes">mp4 - Video only - 144p - resolutionm</property>
   </template>
 </interface>

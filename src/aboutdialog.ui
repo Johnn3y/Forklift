@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
+  <requires lib="gtk+" version="3.24"/>
   <template class="AboutDialog" parent="GtkAboutDialog">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
     <property name="program_name">Forklift</property>
     <property name="version">1.0.0</property>
-    <property name="copyright" translatable="yes">Copyright © 2018 johnn3y</property>
-    <property name="comments" translatable="yes">A Simple GUI for youtube-dl using PyGObject</property>
+    <property name="copyright" translatable="yes">Copyright © 2020 Johnn3y</property>
+    <property name="comments" translatable="yes">A GUI for youtube-dl</property>
     <property name="website">https://github.com/Johnn3y/Forklift/</property>
     <property name="website_label" translatable="yes">Github</property>
     <property name="logo_icon_name">com.github.Johnn3y.Forklift</property>
     <property name="license_type">gpl-3-0</property>
-    <signal name="response" handler="on_about_response" swapped="no"/>
-    <child>
+    <child type="titlebar">
       <placeholder/>
     </child>
     <child internal-child="vbox">

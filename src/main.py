@@ -20,5 +20,5 @@ from .application import Application
 
 
 def main(version):
-	app=Application()
+	app=Application(version=version)
 	return app.run(sys.argv)

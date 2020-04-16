@@ -26,7 +26,8 @@ from application import Application
 
 		
 if __name__ == "__main__":
-	app=Application()
+	#app=Application()
+	app=Application(version=VERSION)
 	sys.exit(app.run(sys.argv))
 
 

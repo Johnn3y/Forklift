@@ -9,13 +9,17 @@ gnome.compile_resources('Forklift',
   install_dir: pkgdatadir,
 )
 
-python3 = import('python3')
+python = import('python')
 
 conf = configuration_data()
-conf.set('PYTHON', python3.find_python().path())
+conf.set('PYTHON', python.find_installation('python3').path())
 conf.set('VERSION', meson.project_version())
 conf.set('localedir', join_paths(get_option('prefix'), get_option('localedir')))
 conf.set('pkgdatadir', pkgdatadir)
+
+dependency('gtk+-3.0')
+dependency('libhandy-0.0')
+dependency('libdazzle-1.0')
 
 configure_file(
   input: 'Forklift.in',

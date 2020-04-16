@@ -1,26 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
+  <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
   <template class="Downloadprogressactionrow" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="orientation">vertical</property>
     <child>
       <object class="HdyActionRow" id="download_progress_actionrow">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="activatable">False</property>
         <property name="selectable">False</property>
-        <property name="icon_name">download-symbolic</property>
-        <property name="subtitle" translatable="yes">World</property>
-        <property name="title" translatable="yes">Hello</property>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="pack_type">end</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkStack">
+        <property name="width_request">48</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="transition_duration">0</property>
+        <child>
+          <object class="GtkBox" id="download_progress_icon_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="name">page1</property>
+            <property name="title" translatable="yes">page1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSpinner">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="active">True</property>
+          </object>
+          <packing>
+            <property name="name">page0</property>
+            <property name="title" translatable="yes">page0</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
       </object>
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">0</property>
+        <property name="position">1</property>
       </packing>
     </child>
   </template>

@@ -16,20 +16,11 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 from __future__ import unicode_literals
 import gi
-gi.require_version('Notify','0.7')
 gi.require_version('Gtk','3.0')
-from gi.repository import Notify, GObject, Gio, GLib
+from gi.repository import GObject, Gio, GLib
 import threading
-
-try:
-	import youtube_dl
-except:
-    pass
+import youtube_dl
 from .cd import cd
-import urllib.request
-import time
-NONE="NONE"
-
 
 class Format(GObject.GObject):
     format_id = GObject.Property(type=str)
@@ -49,12 +40,14 @@ class Format(GObject.GObject):
     title_repr = GObject.Property(type=str)
     subtitle_repr = GObject.Property(type=str)
     icon_name = GObject.Property(type=str)
+    ydl_opts = {}
 
     def __init__(self, dic):
         GObject.GObject.__init__(self)
         for l in ['format_id', 'url', 'player_url', 'ext', 'format_note', 'acodec', 'preference',
                   'abr', 'filesize', 'tbr', 'format', 'vcodec', 'width', 'height']:
             self.set_property(l, dic.get(l))
+        self.ydl_opts={"format":self.format_id}
 
         # Create title and subtitle reprs.
         sst = ""
@@ -77,6 +70,7 @@ class Format(GObject.GObject):
         self.title_repr = h(self.ext)+" - "+h(fs) + \
             "("+h(self.format_note)+")"
         self.subtitle_repr = self.format_id+sst
+
     def conv(self, bdict, by):
         if by is None:
             return None,None
@@ -96,9 +90,9 @@ class DownloadProgressItem(GObject.GObject):
     status = GObject.Property(type=str)
     filename = GObject.Property(type=str)
     tmpfilename = GObject.Property(type=str)
-    downloaded_bytes = GObject.Property(type=str)
-    total_bytes = GObject.Property(type=str)
-    total_bytes_estimate = GObject.Property(type=str)
+    downloaded_bytes = GObject.Property(type=int)
+    total_bytes = GObject.Property(type=int)
+    total_bytes_estimate = GObject.Property(type=int)
     elapsed = GObject.Property(type=str)
     eta = GObject.Property(type=str)
     speed = GObject.Property(type=str)
@@ -117,6 +111,22 @@ class DownloadProgressItem(GObject.GObject):
                 pass
         GLib.idle_add(self.refresh_bind_model)
 
+    @GObject.Property(type=float)
+    def download_progress(self):#returns float if progress calculated elif progress return True else False
+        if  self.total_bytes != 0:
+            return self.downloaded_bytes/self.total_bytes
+        elif self.total_bytes_estimate != 0:
+            return self.downloaded_bytes/self.total_bytes_estimate
+        else:
+            return 0
+
+    @GObject.Property(type=str)
+    def title(self):
+        return self.filename
+
+    @GObject.Property(type=str)
+    def subtitle(self):
+        return self.status
 
 class Item(GObject.GObject):
     playlist_id = GObject.Property(type=str)
@@ -160,11 +170,12 @@ class Item(GObject.GObject):
              self.subtitle +="@ "+self.extractor
 
 class Download(threading.Thread):
-    def __init__(self, url, ydl_opts, path):
+    def __init__(self, url, ydl_opts, path, notification_callback_function):
         threading.Thread.__init__(self)
         self.url = url
         self.ydl_opts = ydl_opts
         self.path = path
+        self.notification_callback_function = notification_callback_function
 
     def my_hook(self, d):
         status = ['finished', 'error', 'downloading']
@@ -172,10 +183,7 @@ class Download(threading.Thread):
             if stat is d['status']:
                 self.model.set_value(self.iter, 0, d['status'])
         if d['status'] == 'finished' or d['status'] == 'error':
-            Notify.init("Forklift")
-            notification = Notify.Notification.new(self.model.get_value(
-                self.iter, 0), self.model.get_value(self.iter, 1))
-            notification.show()
+            GLib.idle_add(self.notification_callback_function,d['status'],d['filename'])
         if d['status'] == 'downloading':
             for a, b in enumerate(['status', 'filename', 'tmpfilename', 'downloaded_bytes', 'total_bytes', 'total_bytes_estimate', 'elapsed', 'eta', 'speed', 'fragment_index', 'fragment_count']):
                 try:
@@ -189,18 +197,17 @@ class Download(threading.Thread):
             try:
                 ydl.download([self.url])
             except youtube_dl.utils.DownloadError as e:
-                Notify.init("Forklift")
-                notification = Notify.Notification.new('Error', str(e))
-                notification.show()
+                GLib.idle_add(notification_callback_function,'Error',str(e))
 
 
 class InfoExtraction(threading.Thread):
 
-    def __init__(self, url, callback, change_extraction_thread_counter):
+    def __init__(self, url, callback, change_extraction_thread_counter, notification_callback_function):
         threading.Thread.__init__(self)
         self.url = url
         self.callback = callback
         self.change_extraction_thread_counter = change_extraction_thread_counter
+        self.notification_callback_function = notification_callback_function
 
     def run(self):
         with youtube_dl.YoutubeDL() as ydl:
@@ -218,8 +225,6 @@ class InfoExtraction(threading.Thread):
                         GLib.idle_add(self.callback, Item(d))
             except youtube_dl.utils.DownloadError as e:
                 self.d = None
-                Notify.init("Forklift")
-                n=Notify.Notification.new(str(e))
-                n.show()
+                GLib.idle_add(self.notification_callback_function,"Error","Unable to extract "+self.url)
             finally:
                 GLib.idle_add(self.change_extraction_thread_counter,False)
