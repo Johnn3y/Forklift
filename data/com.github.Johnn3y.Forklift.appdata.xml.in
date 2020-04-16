@@ -26,15 +26,15 @@
       </screenshot>
     <screenshot>
       <caption>Select format and download directly</caption>
-      <image>https://raw.githubusercontent.com/Johnn3y/Forklift/master/data/screenshots/3.png</image>
+      <image>https://raw.githubusercontent.com/Johnn3y/Forklift/master/data/screenshots/1.png</image>
     </screenshot>
     <screenshot>
       <caption>Download Status</caption>
-      <image>https://raw.githubusercontent.com/Johnn3y/Forklift/master/data/screenshots/4.png</image>
+      <image>https://raw.githubusercontent.com/Johnn3y/Forklift/master/data/screenshots/3.png</image>
     </screenshot>
     <screenshot>
-      <caption>Download and convert files</caption>
-      <image>https://raw.githubusercontent.com/Johnn3y/Forklift/master/data/screenshots/5.png</image>
+      <caption>Responsive design</caption>
+      <image>https://raw.githubusercontent.com/Johnn3y/Forklift/master/data/screenshots/4.png</image>
       </screenshot>
     </screenshots>
   <launchable type="desktop-id">com.github.Johnn3y.Forklift.desktop</launchable>
