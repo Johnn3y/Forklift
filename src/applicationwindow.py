@@ -62,11 +62,6 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     sg3 = Gtk.Template.Child()  
     swg = Gtk.Template.Child() 
     
-    rbsp1 = Gtk.Template.Child()
-    rbsp2 = Gtk.Template.Child()    
-    hbsp1 = Gtk.Template.Child()
-    hbsp2 = Gtk.Template.Child()
-    
     savebutton = Gtk.Template.Child() 
     
     conversionlb = Gtk.Template.Child()    
@@ -224,11 +219,6 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         self.fw1button.set_visible(leaflet.get_fold()==Handy.Fold.FOLDED)
         self.ab2.set_visible(leaflet.get_fold()==Handy.Fold.FOLDED)
         self.ab3.set_visible(leaflet.get_fold()==Handy.Fold.FOLDED)
-        
-        self.rbsp1.set_visible(False)
-        self.rbsp2.set_visible(False)
-        self.hbsp1.set_visible(False)
-        self.hbsp2.set_visible(False)
 
     @Gtk.Template.Callback()
     def on_new_deleteselectedbutton_clicked(self, button):

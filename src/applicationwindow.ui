@@ -3,6 +3,7 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
+  <object class="GtkSizeGroup"/>
   <template class="ApplicationWindow" parent="GtkApplicationWindow">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -137,8 +138,8 @@
                     <property name="icon_name">open-menu-symbolic</property>
                   </object>
                 </child>
-                <accelerator key="Menu" signal="clicked"/>
                 <accelerator key="m" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
+                <accelerator key="Menu" signal="clicked"/>
               </object>
               <packing>
                 <property name="pack_type">end</property>
@@ -171,13 +172,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkSeparator" id="hbsp1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="orientation">vertical</property>
-          </object>
-        </child>
-        <child>
           <object class="GtkHeaderBar" id="hb5">
             <property name="can_focus">False</property>
             <property name="hexpand">True</property>
@@ -197,14 +191,6 @@
           <packing>
             <property name="name">hb5</property>
           </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator" id="hbsp2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">False</property>
-            <property name="orientation">vertical</property>
-          </object>
         </child>
         <child>
           <object class="GtkHeaderBar" id="hb6">
@@ -258,6 +244,8 @@
             <property name="visible_child">rb0</property>
             <property name="visible_child_name">rb0</property>
             <property name="transition_type">slide</property>
+            <property name="can_swipe_back">True</property>
+            <property name="can_swipe_forward">True</property>
             <child>
               <object class="GtkBox" id="rb0">
                 <property name="visible">True</property>
@@ -366,13 +354,6 @@
               <packing>
                 <property name="name">rb0</property>
               </packing>
-            </child>
-            <child>
-              <object class="GtkSeparator" id="rbsp1">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="orientation">vertical</property>
-              </object>
             </child>
             <child>
               <object class="GtkBox" id="rb1">
@@ -871,14 +852,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSeparator" id="rbsp2">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="hexpand">False</property>
-                <property name="orientation">vertical</property>
-              </object>
-            </child>
-            <child>
               <object class="GtkBox" id="rb2">
                 <property name="can_focus">False</property>
                 <child>
@@ -1162,12 +1135,6 @@
       </object>
     </child>
   </template>
-  <object class="GtkSizeGroup">
-    <widgets>
-      <widget name="hbsp2"/>
-      <widget name="rbsp2"/>
-    </widgets>
-  </object>
   <object class="HdyHeaderGroup">
     <headerbars>
       <headerbar name="hb4"/>
@@ -1392,12 +1359,6 @@
     <widgets>
       <widget name="hb6"/>
       <widget name="rb2"/>
-    </widgets>
-  </object>
-  <object class="GtkSizeGroup" id="sg4">
-    <widgets>
-      <widget name="hbsp1"/>
-      <widget name="rbsp1"/>
     </widgets>
   </object>
   <object class="HdySwipeGroup" id="swg">
