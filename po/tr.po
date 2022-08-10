@@ -1,0 +1,351 @@
+# Turkish translation for com.github.Johnn3y.Forklift.
+# Copyright (C) 2022 com.github.Johnn3y.Forklift's COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.Johnn3y.Forklift package.
+#
+# Sabri Ünal <libreajans@gmail.com>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.Johnn3y.Forklift master\n"
+"Report-Msgid-Bugs-To: https://github.com/Johnn3y/Forklift/issues\n"
+"POT-Creation-Date: 2022-08-10 16:09+0300\n"
+"PO-Revision-Date: 2022-08-10 16:31+0300\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.1.1\n"
+"X-Poedit-SearchPath-0: src\n"
+"X-Poedit-SearchPath-1: data\n"
+
+#: src/aboutdialog.ui:10
+msgid "Copyright © 2020 Johnn3y"
+msgstr "Copyright © 2020 Johnn3y"
+
+#: src/aboutdialog.ui:11
+msgid "A GUI for youtube-dl"
+msgstr "Youtube-dl arayüzü"
+
+#: src/aboutdialog.ui:13
+msgid "Github"
+msgstr "Github"
+
+#: src/applicationwindow.ui:10 src/applicationwindow.ui:69
+msgid "Forklift"
+msgstr "Forklift"
+
+#: src/applicationwindow.ui:76 src/items_actionrow.ui:22
+msgid "title"
+msgstr "başlık"
+
+#: src/applicationwindow.ui:87
+msgid "1"
+msgstr "1"
+
+#: src/applicationwindow.ui:111
+msgid "extracting info"
+msgstr "bilgi çıkartılıyor"
+
+#: src/applicationwindow.ui:122
+msgid "exinfo"
+msgstr "exinfo"
+
+#: src/applicationwindow.ui:263
+msgid "Videos"
+msgstr "Videolar"
+
+#: src/applicationwindow.ui:421
+msgid "Options"
+msgstr "Seçenekler"
+
+#: src/applicationwindow.ui:453
+msgid "Use geobypass"
+msgstr "Geobypass kullan"
+
+#: src/applicationwindow.ui:465
+msgid ""
+"IP range in CIDR notation that will be used similarly to geo_bypass_country"
+msgstr ""
+"geo_bypass_country ile benzer şekilde kullanılacak CIDR gösteriminde IP "
+"aralığı"
+
+#: src/applicationwindow.ui:466 src/applicationwindow.ui:1098
+msgid "geo_bypass_ip_block"
+msgstr "geo_bypass_ip_block"
+
+#: src/applicationwindow.ui:479
+msgid ""
+"Two-letter ISO 3166-2 country code that will be used for explicit geographic "
+"restriction bypassing via faking X-Forwarded-For HTTP header"
+msgstr ""
+"Bariz coğrafi kısıtlamaları atlamak için Sahte X-Forwarded-For HTTP "
+"üstbilgisi yoluyla kullanılacak iki harfli ISO 3166-2 ülke kodu"
+
+#: src/applicationwindow.ui:480 src/applicationwindow.ui:1086
+msgid "geo_bypass_country"
+msgstr "geo_bypass_country"
+
+#: src/applicationwindow.ui:504
+msgid "Use authentification"
+msgstr "Kimlik doğrulama kullan"
+
+#: src/applicationwindow.ui:516 src/applicationwindow.ui:589
+msgid "Password for accessing a video"
+msgstr "Video erişim parolası"
+
+#: src/applicationwindow.ui:517 src/applicationwindow.ui:1014
+msgid "videopassword"
+msgstr "videopassword"
+
+#: src/applicationwindow.ui:530
+msgid "Username for authentication purposes"
+msgstr "Kimlik doğrulama için kullanıcı"
+
+#: src/applicationwindow.ui:531 src/applicationwindow.ui:1026
+msgid "username"
+msgstr "username"
+
+#: src/applicationwindow.ui:544
+msgid "Password for authentication purposes"
+msgstr "Kimlik doğrulama için parola"
+
+#: src/applicationwindow.ui:547 src/applicationwindow.ui:1038
+msgid "password"
+msgstr "password"
+
+#: src/applicationwindow.ui:561
+msgid "Multiple-system operator account password"
+msgstr "Çoklu sistem operatörü hesap parolası"
+
+#: src/applicationwindow.ui:562 src/applicationwindow.ui:1062
+msgid "ap_password"
+msgstr "ap_password"
+
+#: src/applicationwindow.ui:575
+msgid "Multiple-system operator account username"
+msgstr "Çoklu sistem operatörü hesap kullanıcı adı"
+
+#: src/applicationwindow.ui:576 src/applicationwindow.ui:1050
+msgid "ap_username"
+msgstr "ap_username"
+
+#: src/applicationwindow.ui:590 src/applicationwindow.ui:1074
+msgid "ap_mso"
+msgstr "ap_mso"
+
+#: src/applicationwindow.ui:614 src/applicationwindow.ui:1002
+msgid "Custom format code"
+msgstr "Özel biçim kodu"
+
+#: src/applicationwindow.ui:627
+msgid "Enter format code"
+msgstr "Biçim kodunu gir"
+
+#: src/applicationwindow.ui:684
+msgid "mp4"
+msgstr "mp4"
+
+#: src/applicationwindow.ui:685
+msgid "Convert to mp4"
+msgstr "Mp4 biçimine çevir"
+
+#: src/applicationwindow.ui:693
+msgid "webm"
+msgstr "webm"
+
+#: src/applicationwindow.ui:694
+msgid "Convert to webm"
+msgstr "Webm biçimine çevir"
+
+#: src/applicationwindow.ui:702
+msgid "mkv"
+msgstr "mkv"
+
+#: src/applicationwindow.ui:703
+msgid "Convert to mkv"
+msgstr "Mkv biçimine çevir"
+
+#: src/applicationwindow.ui:711
+msgid "avi"
+msgstr "avi"
+
+#: src/applicationwindow.ui:712
+msgid "Convert to avi"
+msgstr "Avi biçimine çevir"
+
+#: src/applicationwindow.ui:720
+msgid "ogg"
+msgstr "ogg"
+
+#: src/applicationwindow.ui:721
+msgid "Convert to ogg"
+msgstr "Ogg biçimine çevir"
+
+#: src/applicationwindow.ui:729
+msgid "flv"
+msgstr "flv"
+
+#: src/applicationwindow.ui:730
+msgid "Convert to flv"
+msgstr "Flv biçimine çevir"
+
+#: src/applicationwindow.ui:738 src/applicationwindow.ui:756
+msgid "mp3"
+msgstr "mp3"
+
+#: src/applicationwindow.ui:739
+msgid "Convert to mp3"
+msgstr "Mp3 biçimine çevir"
+
+#: src/applicationwindow.ui:747
+msgid "wav"
+msgstr "wav"
+
+#: src/applicationwindow.ui:748
+msgid "Convert to wav"
+msgstr "Wav biçimine çevir"
+
+#: src/applicationwindow.ui:757
+msgid "Convert to vorbis"
+msgstr "Vorbis biçimine çevir"
+
+#: src/applicationwindow.ui:765
+msgid "opus"
+msgstr "opus"
+
+#: src/applicationwindow.ui:766
+msgid "Convert to opus"
+msgstr "Opus biçimine çevir"
+
+#: src/applicationwindow.ui:774
+msgid "m4a"
+msgstr "m4a"
+
+#: src/applicationwindow.ui:775
+msgid "Convert to m4a"
+msgstr "M4a biçimine çevir"
+
+#: src/applicationwindow.ui:783
+msgid "flac"
+msgstr "flac"
+
+#: src/applicationwindow.ui:784
+msgid "Convert to flac"
+msgstr "Flac biçimine çevir"
+
+#: src/applicationwindow.ui:792
+msgid "aac"
+msgstr "aac"
+
+#: src/applicationwindow.ui:793
+msgid "Convert to aac"
+msgstr "Aac biçimine çevir"
+
+#: src/applicationwindow.ui:803
+msgid "conversion"
+msgstr "dünüşüm"
+
+#: src/applicationwindow.ui:831
+msgid "formats"
+msgstr "biçimler"
+
+#: src/applicationwindow.ui:867
+msgid "Selected videos"
+msgstr "Seçilen videolar"
+
+#: src/applicationwindow.ui:941
+msgid "Selected options"
+msgstr "Seçilen seçenekler"
+
+#: src/applicationwindow.ui:1132 src/downloadprogressactionrow.ui:53
+msgid "page0"
+msgstr "page0"
+
+#: src/applicationwindow.ui:1178
+msgid "Enter URL"
+msgstr "Bağlantı gir"
+
+#: src/applicationwindow.ui:1182
+msgid "URL"
+msgstr "URL"
+
+#: src/applicationwindow.ui:1197
+msgid "YouTube"
+msgstr "YouTube"
+
+#: src/applicationwindow.ui:1198
+msgid "Soundcloud"
+msgstr "Soundcloud"
+
+#: src/applicationwindow.ui:1210
+msgid "Search"
+msgstr "Ara"
+
+#: src/applicationwindow.ui:1281
+msgid "Download Status Info"
+msgstr "İndirme Durum Bilgisi"
+
+#: src/applicationwindow.ui:1333
+msgid "_About Forklift"
+msgstr "Forklift _Hakkında"
+
+#: src/downloadprogressactionrow.ui:42
+msgid "page1"
+msgstr "page1"
+
+#: src/formats_actionrow.ui:11
+msgid "249 - vp9codec - 7,5 MB"
+msgstr "249 - vp9codec - 7,5 MB"
+
+#: src/formats_actionrow.ui:12
+msgid "mp4 - Video only - 144p - resolutionm"
+msgstr "mp4 - Sadece video - 144p - çözünürlük"
+
+#: src/items_actionrow.ui:10
+msgid "World"
+msgstr "Dünya"
+
+#: src/items_actionrow.ui:11
+msgid "Hello"
+msgstr "Herhaba"
+
+#: src/items_actionrow.ui:51
+msgid "alt_title"
+msgstr "alt_title"
+
+#: src/items_actionrow.ui:76 src/items_actionrow.ui:175
+#: src/items_actionrow.ui:274
+msgid "button"
+msgstr "button"
+
+#: src/items_actionrow.ui:94
+msgid "id"
+msgstr "id"
+
+#: src/items_actionrow.ui:122
+msgid "uploader"
+msgstr "uploader"
+
+#: src/items_actionrow.ui:150
+msgid "uploader_id"
+msgstr "uploader_id"
+
+#: src/items_actionrow.ui:193
+msgid "uploader_date"
+msgstr "uploader_date"
+
+#: src/items_actionrow.ui:221
+msgid "license"
+msgstr "license"
+
+#: src/items_actionrow.ui:249
+msgid "creator"
+msgstr "creator"
+
+#: src/items_actionrow.ui:292
+msgid "description"
+msgstr "description"
