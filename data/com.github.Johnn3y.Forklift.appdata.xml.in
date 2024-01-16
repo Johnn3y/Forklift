@@ -34,8 +34,11 @@
       </screenshot>
     </screenshots>
   <launchable type="desktop-id">com.github.Johnn3y.Forklift.desktop</launchable>
-  <url type="homepage">http://github.com/Johnn3y/Forklift</url>
-  <update_contact>http://github.com/Johnn3y</update_contact>
+  <url type="homepage">https://github.com/Johnn3y/Forklift</url>
+  <url type="bugtracker">https://github.com/Johnn3y/Forklift/issues</url>
+  <url type="vcs-browser">https://github.com/Johnn3y/Forklift</url>
+  <url type="translate">https://github.com/Johnn3y/Forklift/tree/master/po</url>
+  <update_contact>https://github.com/Johnn3y</update_contact>
   <content_rating type="oars-1.1" />
   <releases>
     <release version="1.0.0" date="2019-10-07">
